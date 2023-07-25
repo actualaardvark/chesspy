@@ -16,9 +16,15 @@ def render():
             rowtoprint += "|" + j
         rowtoprint += "|"
         print(rowtoprint)
+
 def movepiece():
     piecelocation = input("Piece Coordinate: ")
     movelocation = input("Movement Coordinate: ")
+    selectedpiece = rows[piecelocation[1]][lettertonumber[piecelocation[0]]]
+    if selectedpiece == " ":
+        print("Invalid Piece")
+        movepiece()
+    print(selectedpiece)
 
 
 render()
