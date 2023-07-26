@@ -9,6 +9,8 @@ lettertonumber={
     "g": 6,
     "h": 7
 }
+blackpieces=["♙", "♖", "♘", "♗", "♕", "♔"]
+whitepieces=["♟︎", "♜", "♞", "♝", "♚", "♛"]
 def render():
     for i in rows:
         rowtoprint=""
@@ -18,13 +20,28 @@ def render():
         print(rowtoprint)
 
 def movepiece():
+    validmoves = []
     piecelocation = input("Piece Coordinate: ")
     movelocation = input("Movement Coordinate: ")
-    selectedpiece = rows[piecelocation[1]][lettertonumber[piecelocation[0]]]
+    print(piecelocation[1])
+    selectedpiece = rows[8 - int(piecelocation[1])][lettertonumber[piecelocation[0]]]
+    if selectedpiece == "♟︎":
+        if rows[8 - int(piecelocation[1]) - 1][lettertonumber[piecelocation[0]]] not in blackpieces and rows[8 - int(piecelocation[1]) - 1][lettertonumber[piecelocation[0]]] not in whitepieces:
+            validmoves.append(str(piecelocation[0] + str(int(piecelocation[1]) + 1)))
+            print(validmoves)
+        if piecelocation[1] == str(2):
+            validmoves.append(str(piecelocation[0] + str(int(piecelocation[1]) + 2)))
+            print(validmoves)
     if selectedpiece == " ":
         print("Invalid Piece")
         movepiece()
+    if movelocation in validmoves:
+        rows[8 - int(movelocation[1])][lettertonumber[movelocation[0]]] = selectedpiece
+        rows[8 - int(piecelocation[1])][lettertonumber[piecelocation[0]]] = " "
+    else:
+        print("Invalid Move")
+        movepiece()
     print(selectedpiece)
-
-
-render()
+while True:
+    movepiece()
+    render()
