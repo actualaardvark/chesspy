@@ -61,6 +61,11 @@ while checkmate == False:
                 validmoves.append(letters[column + 1] + str(8 - (row - 2)))
             if rows[row - 2][column - 1] not in whitepieces:
                 validmoves.append(letters[column - 1] + str(8 - (row - 2)))
+            if row + 2 < len(rows):
+                if rows[row + 2][column - 1] not in whitepieces:
+                    validmoves.append(letters[column - 1] + str(8 - (row +2)))
+                if rows[row + 2][column + 1] not in whitepieces:
+                    validmoves.append(letters[column + 1] + str(8 - (row +2)))
         print(validmoves)
         if targetlocation in validmoves:
             targetcolumn = lettertonumber[targetlocation[0]]
