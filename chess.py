@@ -50,6 +50,17 @@ while checkmate == False:
                 validmoves.append(letters[column] + str(8 - (row - 1)))
             if row == 6 and rows[row - 2][column] not in whitepieces and rows[row - 2][column] not in blackpieces:
                 validmoves.append(letters[column] + str(8 - (row - 2)))
+            if column + 1 < len(rows[row - 1]):
+                if rows[row - 1][column + 1] in blackpieces:
+                    validmoves.append(letters[column + 1] + str(8 - (row - 1)))
+            if column - 1 >= 0:
+                if rows[row - 1][column - 1] in blackpieces:
+                    validmoves.append(letters[column - 1] + str(8-(row - 1)))
+        if selectedpiece == "♞":
+            if rows[row - 2][column + 1] not in whitepieces:
+                validmoves.append(letters[column + 1] + str(8 - (row - 2)))
+            if rows[row - 2][column - 1] not in whitepieces:
+                validmoves.append(letters[column - 1] + str(8 - (row - 2)))
         print(validmoves)
         if targetlocation in validmoves:
             targetcolumn = lettertonumber[targetlocation[0]]
