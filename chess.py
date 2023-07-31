@@ -57,6 +57,18 @@ while checkmate == False:
                 if rows[row - 1][column - 1] in blackpieces:
                     validmoves.append(letters[column - 1] + str(8-(row - 1)))
         if selectedpiece == "♞":
+            if 0 <= column - 2 <= len(rows[column]):
+                if rows[column - 2][row + 1] not in whitepieces:
+                    validmoves.append(letters[column - 2] + str(8 - (row + 1)))
+                if rows[column - 2][row - 1] not in whitepieces:
+                    validmoves.append(letters[column - 2] + str(8 - (row -1)))
+            if 0 <= column + 2 <= len(rows[column]):
+                if 0 <= row + 1 <= len(rows[column][row]):
+                    if rows[column + 2][row + 1] not in whitepieces:
+                        validmoves.append(letters[column + 2] + str(8 - (row + 1)))
+                if 0 <= row - 1 <= len(rows[column][row]):
+                    if rows[column + 2][row - 1] not in whitepieces:
+                        validmoves.append(letters[column + 2] + str(8 - (row -1)))
             if rows[row - 2][column + 1] not in whitepieces:
                 validmoves.append(letters[column + 1] + str(8 - (row - 2)))
             if rows[row - 2][column - 1] not in whitepieces:
